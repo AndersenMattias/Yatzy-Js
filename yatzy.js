@@ -1,7 +1,7 @@
 class Dice {
   constructor(value, id) {
     this.value = value;
-    this.id = document.getElementById(id);
+    this.id = document.getElementById(id);    
   }
   rollDice() {
     this.id.src = "dice" + this.random() + ".png";
