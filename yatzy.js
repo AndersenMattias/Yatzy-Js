@@ -1,10 +1,11 @@
 class Dice {
   constructor(value, id) {
     this.value = value;
-    this.id = document.getElementById(id);
+    this.id = document.getElementById(id);    
   }
   rollDice() {
     this.id.src = "dice" + this.random() + ".png";
+    this.yatzy();
   }
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
