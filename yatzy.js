@@ -18,7 +18,7 @@ class Dice {
   
   insertValue() {
     let td1 = document.getElementById('td1');
-    let text = document.createTextNode(3);
+    td1.innerHTML = 
     td1.appendChild(text);
     
     let td2 = document.getElementById('td2');
