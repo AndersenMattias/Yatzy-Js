@@ -35,9 +35,8 @@ class Dice {
     td2.appendChild(text2);
   }
 
-    let td2 = document.getElementById("td2");
-    td2.innerHTML = 3;
-  }
+
+  
 }
 let dice1 = new Dice(1, "dice1");
 let dice2 = new Dice(2, "dice2");
