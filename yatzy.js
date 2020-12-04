@@ -9,6 +9,12 @@ class Dice {
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
   }
+
+  yatzy() {
+    if(dice1.value === dice2.value && dice1.value === dice3.value && dice1.value === dice4.value && dice1 === dice5.value && dice1.value === dice6.value)
+     console.log('YATZY!');
+  }
+
 }
 let dice1 = new Dice(1, "dice1");
 let dice2 = new Dice(2, "dice2");
