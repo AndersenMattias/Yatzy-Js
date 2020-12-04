@@ -1,7 +1,7 @@
 class Dice {
   constructor(value, id) {
     this.value = value;
-    this.id = document.getElementById(id);    
+    this.id = document.getElementById(id);
   }
   rollDice() {
     this.id.src = "dice" + this.random() + ".png";
@@ -10,12 +10,21 @@ class Dice {
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
   }
+  lockDice() {
+    this.id.classList.toggle("locked");
+  }
 
   yatzy() {
-    if(dice1.value === dice2.value && dice1.value === dice3.value && dice1.value === dice4.value && dice1 === dice5.value && dice1.value === dice6.value)
-     alert('YATZY!');
+    if (
+      dice1.value === dice2.value &&
+      dice1.value === dice3.value &&
+      dice1.value === dice4.value &&
+      dice1.value === dice5.value &&
+      dice1.value === dice6.value
+    )
+      alert("YATZY!");
   }
-  
+
   insertValue() {
     let td1 = document.getElementById('td1');
     td1.innerHTML = 
@@ -26,6 +35,9 @@ class Dice {
     td2.appendChild(text2);
   }
 
+    let td2 = document.getElementById("td2");
+    td2.innerHTML = 3;
+  }
 }
 let dice1 = new Dice(1, "dice1");
 let dice2 = new Dice(2, "dice2");
@@ -41,3 +53,5 @@ function rollAllDice() {
   dice5.rollDice();
   dice6.rollDice();
 }
+
+dice1.insertValue();
