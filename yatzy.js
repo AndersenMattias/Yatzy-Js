@@ -13,7 +13,17 @@ class Dice {
 
   yatzy() {
     if(dice1.value === dice2.value && dice1.value === dice3.value && dice1.value === dice4.value && dice1 === dice5.value && dice1.value === dice6.value)
-     console.log('YATZY!');
+     alert('YATZY!');
+  }
+  
+  insertValue() {
+    let td1 = document.getElementById('td1');
+    let text = document.createTextNode(3);
+    td1.appendChild(text);
+    
+    let td2 = document.getElementById('td2');
+    let text2 = document.createTextNode(55);
+    td2.appendChild(text2);
   }
 
 }
