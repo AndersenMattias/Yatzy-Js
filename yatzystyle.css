@@ -51,3 +51,7 @@ td {
 .locked {
   opacity: 0.5;
 }
+
+.activePlayer {
+  border-radius: 2px solid black;
+}
