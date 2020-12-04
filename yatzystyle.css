@@ -47,3 +47,7 @@ td {
   height: 100px;
   width: 100px;
 }
+
+.locked {
+  opacity: 0.5;
+}

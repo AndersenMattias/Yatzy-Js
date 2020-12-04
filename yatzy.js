@@ -10,6 +10,9 @@ class Dice {
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
   }
+  lockDice() {
+    this.id.classList.toggle("locked");
+  }
 
   yatzy() {
     if (
