@@ -5,7 +5,6 @@ class Dice {
   }
   rollDice() {
     if (activePlayer.noOfRolls > 0) {
-      console.log(this.id.classList[0] !== "locked");
       if (this.id.classList[0] !== "locked") {
         this.id.src = "dice" + this.random() + ".png";
         this.yatzy();
@@ -101,26 +100,19 @@ function rollAllDice() {
 }
 
 function calcSum() {
-  let array = Array.from(document.querySelectorAll(".player1"));
+  let array = Array.from(currentPlayer);
   let newArray = [];
 
   for (let i = 1; i < 7; i++) {
-    const element = array[i];
-    newArray.push(Number(element.innerHTML));
+    newArray.push(Number(array[i].innerHTML));
   }
 
   let sum = newArray.reduce((total, curr) => total + curr);
 
-  document.getElementById("sum1").innerHTML = sum;
+  currentPlayer[7].innerHTML = sum;
 
-  if (sum > 63 && currentPlayer === 'player1') {
-    document.getElementById("bonus1").innerHTML = 50;
-  } else if (sum > 63 && currentPlayer === 'player2') {
-    document.getElementById("bonus2").innerHTML = 50;
-  } else if (sum > 63 && currentPlayer === 'player3') {
-    document.getElementById("bonus3").innerHTML = 50;
-  } else {
-    document.getElementById("bonus4").innerHTML = 50;
+  if (sum > 63) {
+    currentPlayer[8].innerHTML = 50;
   }
 }
 
@@ -157,8 +149,13 @@ function addPair(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
-
+  let duplicates = diceArray
+    .forEach((x) => console.log(x.value))
+    .reduce(function (acc, el, i, arr) {
+      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el);
+      return acc;
+    }, []);
+  console.log(duplicates);
   insertScore(sum, currentScore);
 }
 
