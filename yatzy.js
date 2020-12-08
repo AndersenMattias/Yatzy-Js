@@ -118,6 +118,6 @@ function addSingles(number) {
       sum += diceArray[i].value;
     }
   }
-  return (Array.from(currentPlayer)[number].innerHTML = sum);
+  Array.from(currentPlayer)[number].innerHTML = sum;
   nextPlayer();
 }
