@@ -24,14 +24,6 @@ class Dice {
     )
       alert("YATZY!");
   }
-
-  insertValue() {
-    let td1 = document.getElementById("ones1");
-    td1.innerHTML = 5;
-
-    let td2 = document.getElementById("ones2");
-    td2.innerHTML = 3;
-  }
 }
 
 class Player {
