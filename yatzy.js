@@ -117,22 +117,110 @@ function calcSum() {
 
 init();
 
-function addSingles(number) {
-  let sum = 0;
-  for (let i = 0; i < diceArray.length; i++) {
-    if (diceArray[i].value == number) {
-      sum += diceArray[i].value;
-    }
-  }
-  if (Array.from(currentPlayer)[number].innerHTML == "") {
+function insertScore(sum, currentScore) {
+  if (currentScore.innerHTML == "") {
     if (sum > 0) {
-      Array.from(currentPlayer)[number].innerHTML = sum;
+      currentScore.innerHTML = sum;
       nextPlayer();
     } else if (confirm("Are you sure you want to use the score 0?")) {
-      Array.from(currentPlayer)[number].innerHTML = sum;
+      currentScore.innerHTML = sum;
       nextPlayer();
     }
   } else {
     alert("You are not allowed to overwrite points");
   }
+}
+
+function addSingles(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {
+    if (diceArray[i].value == number) {
+      sum += diceArray[i].value;
+    }
+  }
+
+  insertScore(sum, currentScore);
+}
+
+function addPair(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addPairs(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addThreeOfAKind(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addFourOfAKind(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addSmallStraight(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addLargeStraight(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addFullHouse(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addChance(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
+}
+
+function addYatzy(number) {
+  let sum = 0;
+  let currentScore = Array.from(currentPlayer)[number];
+
+  for (let i = 0; i < diceArray.length; i++) {}
+
+  insertScore(sum, currentScore);
 }
