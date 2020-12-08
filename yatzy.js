@@ -94,7 +94,7 @@ function rollAllDice() {
   dice5.rollDice();
   dice6.rollDice();
   if (activePlayer.noOfRolls <= 0) {
-    alert("You are out of tries!");
+    alert("You are out of tries");
   }
   activePlayer.noOfRolls--;
 }
