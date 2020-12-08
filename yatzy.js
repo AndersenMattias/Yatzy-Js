@@ -110,8 +110,14 @@ function calcSum() {
 
   document.getElementById("sum1").innerHTML = sum;
 
-  if (sum > 63) {
+  if (sum > 63 && currentPlayer === 'player1') {
     document.getElementById("bonus1").innerHTML = 50;
+  } else if (sum > 63 && currentPlayer === 'player2') {
+    document.getElementById("bonus2").innerHTML = 50;
+  } else if (sum > 63 && currentPlayer === 'player3') {
+    document.getElementById("bonus3").innerHTML = 50;
+  } else {
+    document.getElementById("bonus4").innerHTML = 50;
   }
 }
 
