@@ -10,6 +10,9 @@ class Dice {
         this.id.src = "dice" + this.random() + ".png";
         this.yatzy();
       }
+      if (this.id.classList.contains("hidden")) {
+        this.id.classList.remove("hidden");
+      }
     }
   }
   random() {
@@ -75,6 +78,8 @@ function nextPlayer() {
   for (let i = 0; i < diceArray.length; i++) {
     const element = diceArray[i];
     element.id.classList.remove("locked");
+    element.id.classList.add("hidden");
+    element.value = 0;
   }
 }
 
