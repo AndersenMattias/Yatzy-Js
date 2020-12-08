@@ -4,7 +4,8 @@ class Dice {
     this.id = document.getElementById(id);
   }
   rollDice() {
-    if (this.id.classList !== "locked") {
+    console.log(this.id.classList[0] !== "locked");
+    if (this.id.classList[0] !== "locked") {
       this.id.src = "dice" + this.random() + ".png";
       this.yatzy();
     }
@@ -66,6 +67,11 @@ function nextPlayer() {
   currentPlayer = document.getElementsByClassName("player" + activePlayer.id);
   Array.from(lastPlayer).forEach((x) => x.classList.remove("activePlayer"));
   Array.from(currentPlayer).forEach((x) => x.classList.add("activePlayer"));
+
+  for (let i = 0; i < diceArray.length; i++) {
+    const element = diceArray[i];
+    element.id.classList.remove("locked");
+  }
 }
 
 function init() {
