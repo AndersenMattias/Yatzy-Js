@@ -1,175 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="yatzystyle.css" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yatzy</title>
-  </head>
-  <body>
-    <h1>Yatzy</h1>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    // testar branch
+<body>
 
-    <div class="scoresheet">
-      <table>
+  <h1>Yatzy!</h1>
+
+    <table>
         <thead>
-          <tr>
-            <th>Spelare/Players</th>
-            <td id="player1"></td>
-            <td id="player2"></td>
-            <td id="player3"></td>
-            <td id="player4"></td>
-          </tr>
+            <tr class="spelare">
+                <th>Spelare/Player</th>
+                <th class="player-one-title">Player 1</th>
+                <th class="player-two-title">Player 2</th>
+                <th class="player-three-title">Player 3</th>
+                <th class="player-four-title">Player 4</th>
+            </tr>
         </thead>
-
         <tbody>
-          <tr>
-            <td>Ettor/Ones</td>
-            <td class="column" id="ones1">3</td>
-            <td id="ones2">4</td>
-            <td class="column" id="ones3">1</td>
-            <td id="ones4">10</td>
-          </tr>
-            
-          <tr>
-            <td>Tvåor/Twos</td>
-            <td class="column" id="twos1">6</td>
-            <td id="twos2">3</td>
-            <td class="column" id="twos3">8</td>
-            <td id="twos4">4</td>
-          </tr>
-          <tr>
-            <td>Treor/Threes</td>
-            <td class="column" id="threes1">9</td>
-            <td id="threes2">21</td>
-            <td class="column" id="threes3">4</td>
-            <td id="threes4">20</td>
-          </tr>
-          <tr>
-            <td>Fyror/Fours</td>
-            <td class="column" id="fours1">16</td>
-            <td id="fours2">16</td>
-            <td class="column" id="fours3">12</td>
-            <td id="fours4">8</td>
-          </tr>
-          <tr>
-            <td>Femmor/Fives</td>
-            <td class="column" id="fives1">15</td>
-            <td id="fives2">25</td>
-            <td class="column" id="fives3">15</td>
-            <td id="fives4">20</td>
-          </tr>
-          <tr>
-            <td>Sexor/Sixes</td>
-            <td class="column" id="sixes1">18</td>
-            <td id="sixes2">5</td>
-            <td class="column" id="sixes3">8</td>
-            <td id="sixes4">10</td>
-          </tr>
+            <tr>
+                <th>Ettor/Ones</th>
 
-          <tr>
-            <th>Summa/Sum</th>
-            <td class="row" id="sum1"></td>
-            <td class="row" id="sum2"></td>
-            <td class="row" id="sum3"></td>
-            <td class="row" id="sum4"></td>
-          </tr>
-          <tr>
-            <th>Bonus</th>
-            <td class="row" id="bonus1"></td>
-            <td class="row" id="bonus2"></td>
-            <td class="row" id="bonus3"></td>
-            <td class="row" id="bonus4"></td>
-          </tr>
-
-          <tr>
-            <td>Par/Pair</td>
-            <td class="column" id="pair1"></td>
-            <td id="pair2"></td>
-            <td class="column" id="pair3"></td>
-            <td id="pair4"></td>
-          </tr>
-
-          <tr>
-            <td>Två par/Two pairs</td>
-            <td class="column" id="pairs1"></td>
-            <td id="pairs2"></td>
-            <td class="column" id="pairs3"></td>
-            <td id="pairs4"></td>
-          </tr>
-          <tr>
-            <td>Tretal/Three of a kind</td>
-            <td class="column" id="threeOfAKind1"></td>
-            <td id="threeOfAKind2"></td>
-            <td class="column" id="threeOfAKind3"></td>
-            <td id="threeOfAKind4"></td>
-          </tr>
-          <tr>
-            <td>Fyrtal/Four of a kind</td>
-            <td class="column" id="fourOfAKind1"></td>
-            <td id="fourOfAKind2"></td>
-            <td class="column" id="fourOfAKind3"></td>
-            <td id="fourOfAKind4"></td>
-          </tr>
-          <tr>
-            <td>Liten stege/Small straight</td>
-            <td class="column" id="smallStraight1"></td>
-            <td id="smallStraight2"></td>
-            <td class="column" id="smallStraight3"></td>
-            <td id="smallStraight4"></td>
-          </tr>
-          <tr>
-            <td>Stor stege/Large straight</td>
-            <td class="column" id="largeStraight1"></td>
-            <td id="largeStraight2"></td>
-            <td class="column" id="largeStraight3"></td>
-            <td id="largeStraight4"></td>
-          </tr>
-          <tr>
-            <td>Kåk/Full house</td>
-            <td class="column" id="fullHouse1"></td>
-            <td id="fullHouse2"></td>
-            <td class="column" id="fullHouse3"></td>
-            <td id="fullHouse4"></td>
-          </tr>
-          <tr>
-            <td>Chans/Chance</td>
-            <td class="column" id="chance1"></td>
-            <td id="chance2"></td>
-            <td class="column" id="chance3"></td>
-            <td id="chance4"></td>
-          </tr>
-          <tr>
-            <td>Yatzy</td>
-            <td class="column" id="yatzy1"></td>
-            <td id="yatzy2"></td>
-            <td class="column" id="yatzy3"></td>
-            <td id="yatzy4"></td>
-          </tr>
-          <tr>
-            <th>Totalt/Total</th>
-            <td class="row" id="total1"></td>
-            <td class="row" id="total2"></td>
-            <td class="row" id="total3"></td>
-            <td class="row" id="total4"></td>
-          </tr>
+                <td><input type="number" min="1" max="5" step="1" class="player-one ones"></td>
+                <td><input type="number" min="1" max="5" step="1" class="player-two ones"></td>
+                <td><input type="number" min="1" max="5" step="1" class="player-three ones"></td>
+                <td><input type="number" min="1" max="5" step="1" class="player-four ones"></td>
+            </tr>
+            <tr>
+                <th>Tvåor/Twos</th>
+                <td><input type="number" min="1" max="5" step="2" class="player-one twos"></td>
+                <td><input type="number" min="1" max="5" step="2" class="player-two twos"></td>
+                <td><input type="number" min="1" max="5" step="2" class="player-three twos"></td>
+                <td><input type="number" min="1" max="5" step="2" class="player-four twos"></td>
+            </tr>
+            <tr>
+                <th>Treor/Threes</th>
+                <td><input type="number" min="1" max="5" step="3" class="player-one threes"></td>
+                <td><input type="number" min="1" max="5" step="3" class="player-two threes"></td>
+                <td><input type="number" min="1" max="5" step="3" class="player-three threes"></td>
+                <td><input type="number" min="1" max="5" step="3" class="player-four threes"></td>
+            </tr>
+            <tr>
+                <th>Fyror/Fours</th>
+                <td><input type="number" min="1" max="5" step="4" class="player-one fours"></td>
+                <td><input type="number" min="1" max="5" step="4" class="player-two fours"></td>
+                <td><input type="number" min="1" max="5" step="4" class="player-three fours"></td>
+                <td><input type="number" min="1" max="5" step="4" class="player-four fours"></td>
+            </tr>
+            <tr>
+                <th>Femmor/Fives</th>
+                <td><input type="number" min="1" max="5" step="5" class="player-one fives"></td>
+                <td><input type="number" min="1" max="5" step="5" class="player-two fives"></td>
+                <td><input type="number" min="1" max="5" step="5" class="player-three fives"></td>
+                <td><input type="number" min="1" max="5" step="5" class="player-four fives"></td>
+            </tr>
+            <tr>
+                <th>Sexor/Sixes</th>
+                <td><input type="number" min="1" max="5" step="6" class="player-one sixes"></td>
+                <td><input type="number" min="1" max="5" step="6" class="player-two sixes"></td>
+                <td><input type="number" min="1" max="5" step="6" class="player-three sixes"></td>
+                <td><input type="number" min="1" max="5" step="6" class="player-four sixes"></td>
+            </tr>
+            <tr class="summa">
+                <th>Summa/Sum</th>
+                <td class="sum"></td>
+                <td class="sum"></td>
+                <td class="sum"></td>
+                <td class="sum"></td>
+            </tr>
+            <tr class="bonus">
+                <th>Bonus</th>
+                <td id="bonus1"></td>
+                <td id="bonus2"></td>
+                <td id="bonus3"></td>
+                <td id="bonus4"></td>
+            </tr>
+            <tr>
+                <th>Par/Pair</th>
+                <td><input type="number" min="1" max="5"  class="player-one pair"></td>
+                <td><input type="number" min="1" max="5"  class="player-two pair"></td>
+                <td><input type="number" min="1" max="5"  class="player-three pair"></td>
+                <td><input type="number" min="1" max="5"  class="player-four pair"></td>
+            </tr>
+            <tr>
+                <th>Två par/Two pairs</th>
+                <td><input type="number" min="1" max="5"  class="player-one twoPairs"></td>
+                <td><input type="number" min="1" max="5"  class="player-two twoPairs"></td>
+                <td><input type="number" min="1" max="5"  class="player-three twoPairs"></td>
+                <td><input type="number" min="1" max="5"  class="player-four twoPairs"></td>
+            </tr>
+            <tr>
+                <th>Tretal/Three of a kind</th>
+                <td><input type="number" min="1" max="5"  class="player-one threeOf"></td>
+                <td><input type="number" min="1" max="5"  class="player-two threeOf"></td>
+                <td><input type="number" min="1" max="5"  class="player-three threeOf"></td>
+                <td><input type="number" min="1" max="5"  class="player-four threeOf"></td>
+            </tr>
+            <tr>
+                <th>Fyrtal/Four of a kind</th>
+                <td><input type="number" min="1" max="5"  class="player-one fourOf"></td>
+                <td><input type="number" min="1" max="5"  class="player-two fourOf"></td>
+                <td><input type="number" min="1" max="5"  class="player-three fourOf"></td>
+                <td><input type="number" min="1" max="5"  class="player-four fourOf"></td>
+            </tr>
+            <tr>
+                <th>Liten stege/Small straight</th>
+                <td><input type="number" min="1" max="5"  class="player-one smallStraight"></td>
+                <td><input type="number" min="1" max="5"  class="player-two smallStraight"></td>
+                <td><input type="number" min="1" max="5"  class="player-three smallStraight"></td>
+                <td><input type="number" min="1" max="5"  class="player-four smallStraight"></td>
+            </tr>
+            <tr>
+                <th>Stor stege/Large straight</th>
+                <td><input type="number" min="1" max="5"  class="player-one largeStraight"></td>
+                <td><input type="number" min="1" max="5"  class="player-two largeStraight"></td>
+                <td><input type="number" min="1" max="5"  class="player-three largeStraight"></td>
+                <td><input type="number" min="1" max="5"  class="player-four largeStraight"></td>
+            </tr>
+            <tr>
+                <th>Kåk/Full house</th>
+                <td><input type="number" min="1" max="5" step="1" class="player-one fullHouse"></td>
+                <td><input type="number" min="1" max="5" step="1" class="player-two fullHouse"></td>
+                <td><input type="number" min="1" max="5" step="1" class="player-three fullHouse"></td>
+                <td><input type="number" min="1" max="5" step="1" class="player-four fullHouse"></td>
+            </tr>
+            <tr>
+                <th>Chans/Chance</th>
+                <td><input type="number" min="1" max="5"  class="player-one chance"></td>
+                <td><input type="number" min="1" max="5"  class="player-two chance"></td>
+                <td><input type="number" min="1" max="5"  class="player-three chance"></td>
+                <td><input type="number" min="1" max="5"  class="player-four chance"></td>
+            </tr>
+            <tr>
+                <th>Yatzy</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="total">
+                <th>Totalt/Total</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </tbody>
-      </table>
-      <div class="diceDiv">
-        <img id="dice1" src="dice1.png" alt="" onclick="dice1.lockDice()" />
-        <img id="dice2" src="dice2.png" alt="" onclick="dice2.lockDice()" />
-        <img id="dice3" src="dice3.png" alt="" onclick="dice3.lockDice()" />
-        <img id="dice4" src="dice4.png" alt="" onclick="dice4.lockDice()" />
-        <img id="dice5" src="dice5.png" alt="" onclick="dice5.lockDice()" />
-        <img id="dice6" src="dice6.png" alt="" onclick="dice6.lockDice()" />
-      </div>
-      <button onclick="rollAllDice()">Roll the dice!</button>
-      <button onclick="nextPlayer()">Next Player</button>
-      <button onclick="calcSum()">Get sum</button>
+    </table>
+
+    <div class="diceDiv">
+      <img id="dice1" src="dice1.png" alt=""/>
+      <img id="dice2" src="dice2.png" alt=""/>
+      <img id="dice3" src="dice3.png" alt=""/>
+      <img id="dice4" src="dice4.png" alt=""/>
+      <img id="dice5" src="dice5.png" alt=""/>
+      <img id="dice6" src="dice6.png" alt=""/>
     </div>
-    <script src="yatzy.js"></script>
-  </body>
+
+    <div class="btn-div">
+      <button type="button" class="btn btn-calculate" onclick="calcSum()">Calculate!</button>
+    </div>
+    
+    <script src="yatzy.js" async></script>
+</body>
+
 </html>
-
-

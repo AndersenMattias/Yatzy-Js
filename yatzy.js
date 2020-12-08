@@ -1,3 +1,5 @@
+'use strict';
+
 class Dice {
   constructor(value, id) {
     this.value = value;

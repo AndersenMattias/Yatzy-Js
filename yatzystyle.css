@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 h1 {
   text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 
 table {
@@ -10,37 +16,28 @@ table {
   border-collapse: collapse;
 }
 
-th {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+th {  
   font-size: 14px;
   text-align: left;
   padding: 7px;
   width: 5%;
   border: 2px solid black;
-  background-color: #a0a2a3;
+  background-color: #879196;
 }
 
 td {
   font-size: 12px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: left;
   padding: 7px;
   width: 10%;
   border: 1px black solid;
 }
 
-.row {
-  background-color: rgb(204, 204, 204);
-}
-
-.column {
-  background-color: #a7a7a7;
-}
-
 .diceDiv {
   display: flex;
-  margin-top: 20px;
   justify-content: center;
+  align-items: center;
+  height: 200px; 
 }
 
 .diceDiv > img {
@@ -48,10 +45,15 @@ td {
   width: 100px;
 }
 
-.locked {
-  opacity: 0.5;
+
+.btn-div {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;    
 }
 
-.activePlayer {
-  border-radius: 2px solid black;
+.btn-calculate {
+  font-size: x-large;
 }
+
