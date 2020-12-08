@@ -4,10 +4,12 @@ class Dice {
     this.id = document.getElementById(id);
   }
   rollDice() {
-    console.log(this.id.classList[0] !== "locked");
-    if (this.id.classList[0] !== "locked") {
-      this.id.src = "dice" + this.random() + ".png";
-      this.yatzy();
+    if (activePlayer.noOfRolls > 0) {
+      console.log(this.id.classList[0] !== "locked");
+      if (this.id.classList[0] !== "locked") {
+        this.id.src = "dice" + this.random() + ".png";
+        this.yatzy();
+      }
     }
   }
   random() {
@@ -33,6 +35,7 @@ class Player {
   constructor(id, name) {
     this.id = id;
     this.name = name;
+    this.noOfRolls = 3;
     this.setName();
   }
   setName() {
@@ -64,6 +67,7 @@ function nextPlayer() {
   lastPlayer = document.getElementsByClassName("player" + activePlayer.id);
   activeNumber = (activeNumber + 1) % playersArray.length;
   activePlayer = playersArray[activeNumber];
+  activePlayer.noOfRolls = 3;
   currentPlayer = document.getElementsByClassName("player" + activePlayer.id);
   Array.from(lastPlayer).forEach((x) => x.classList.remove("activePlayer"));
   Array.from(currentPlayer).forEach((x) => x.classList.add("activePlayer"));
@@ -85,6 +89,7 @@ function rollAllDice() {
   dice4.rollDice();
   dice5.rollDice();
   dice6.rollDice();
+  activePlayer.noOfRolls--;
 }
 
 function calcSum() {
