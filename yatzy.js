@@ -125,8 +125,13 @@ function addSingles(number) {
     }
   }
   if (Array.from(currentPlayer)[number].innerHTML == "") {
-    Array.from(currentPlayer)[number].innerHTML = sum;
-    nextPlayer();
+    if (sum > 0) {
+      Array.from(currentPlayer)[number].innerHTML = sum;
+      nextPlayer();
+    } else if (confirm("Are you sure you want to use the score 0?")) {
+      Array.from(currentPlayer)[number].innerHTML = sum;
+      nextPlayer();
+    }
   } else {
     alert("You are not allowed to overwrite points");
   }
