@@ -94,9 +94,10 @@ function rollAllDice() {
   dice5.rollDice();
   dice6.rollDice();
   activePlayer.noOfRolls--;
-  if(activePlayer.noOfRolls <= 0) {
-    alert('You are out of tries!');
+  if(activePlayer.noOfRolls === 0) {
+    alert('You are out of tries');
   } 
+  activePlayer.noOfRolls--;
 }
 
 function calcSum() {
