@@ -55,9 +55,8 @@ let dice2 = new Dice(2, "dice2");
 let dice3 = new Dice(3, "dice3");
 let dice4 = new Dice(4, "dice4");
 let dice5 = new Dice(5, "dice5");
-let dice6 = new Dice(6, "dice6");
 
-let diceArray = [dice1, dice2, dice3, dice4, dice5, dice6];
+let diceArray = [dice1, dice2, dice3, dice4, dice5];
 
 let playersArray = [player1, player2, player3, player4];
 let activeNumber = 3;
@@ -92,7 +91,6 @@ function rollAllDice() {
   dice3.rollDice();
   dice4.rollDice();
   dice5.rollDice();
-  dice6.rollDice();
   if (activePlayer.noOfRolls <= 0) {
     alert("You are out of tries");
   }
@@ -150,12 +148,16 @@ function addPair(number) {
   let currentScore = Array.from(currentPlayer)[number];
 
   let duplicates = diceArray
-    .forEach((x) => console.log(x.value))
-    .reduce(function (acc, el, i, arr) {
+    .map((x) => x.value)
+    .reduce((acc, el, i, arr) => {
+      console.log(acc, el, i, arr.indexOf(el));
+
       if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el);
       return acc;
-    }, []);
-  console.log(duplicates);
+    }, [])
+    .sort()
+    .slice(-1)[0];
+  sum = duplicates * 2;
   insertScore(sum, currentScore);
 }
 
@@ -163,7 +165,18 @@ function addPairs(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  let duplicates = diceArray
+    .map((x) => x.value)
+    .reduce((acc, el, i, arr) => {
+      console.log(acc, el, i, arr.indexOf(el));
+
+      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el);
+      return acc;
+    }, [])
+    .sort()
+    .slice(-2);
+  console.log(duplicates.map((x) => x * 2));
+  sum = duplicates.map((x) => x * 2).reduce((total, curr) => total + curr);
 
   insertScore(sum, currentScore);
 }
@@ -172,7 +185,16 @@ function addThreeOfAKind(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  let triplets = diceArray.map((x) => x.value).sort();
+  let array = [];
+  for (let i = 5; i >= 0; i--) {
+    console.log(triplets[i]);
+    if (triplets[i + 1] == triplets[i] && triplets[i + 2] == triplets[i]) {
+      array.push(triplets[i]);
+    }
+  }
+
+  sum = array.sort().slice(-1) * 3;
 
   insertScore(sum, currentScore);
 }
@@ -181,7 +203,20 @@ function addFourOfAKind(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  let quadruples = diceArray.map((x) => x.value).sort();
+  let array = [];
+  for (let i = 5; i >= 0; i--) {
+    console.log(quadruples[i]);
+    if (
+      quadruples[i + 1] == quadruples[i] &&
+      quadruples[i + 2] == quadruples[i] &&
+      quadruples[i + 3] == quadruples[i]
+    ) {
+      array.push(quadruples[i]);
+    }
+  }
+
+  sum = array[0] * 4;
 
   insertScore(sum, currentScore);
 }
@@ -190,7 +225,15 @@ function addSmallStraight(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  let smallStraight = diceArray
+    .map((x) => x.value)
+    .filter((x) => x < 6)
+    .sort();
+  smallStraight = [...new Set(smallStraight)];
+  console.log(smallStraight);
+  if (smallStraight.length === 5) {
+    sum = smallStraight.reduce((total, curr) => total + curr);
+  }
 
   insertScore(sum, currentScore);
 }
@@ -199,17 +242,41 @@ function addLargeStraight(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  let largeStraight = diceArray
+    .map((x) => x.value)
+    .filter((x) => x > 1)
+    .sort();
+  largeStraight = [...new Set(largeStraight)];
+  console.log(largeStraight);
+  if (largeStraight.length === 5) {
+    sum = largeStraight.reduce((total, curr) => total + curr);
+  }
 
   insertScore(sum, currentScore);
 }
+
+dice1.value = 2;
+dice2.value = 2;
+dice3.value = 5;
+dice4.value = 5;
+dice5.value = 5;
 
 function addFullHouse(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  let array = diceArray.map((x) => x.value).sort();
 
+  const check1 =
+    array[0] === array[1] && array[2] === array[3] && array[2] === array[4];
+  const check2 =
+    array[0] === array[1] && array[0] === array[2] && array[3] === array[4];
+
+  if (check1 || check2) {
+    sum = diceArray.map((x) => x.value).reduce((total, curr) => total + curr);
+  }
+  console.log(sum);
+  console.log(array);
   insertScore(sum, currentScore);
 }
 
@@ -217,7 +284,7 @@ function addChance(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
+  sum = diceArray.map((x) => x.value).reduce((total, curr) => total + curr);
 
   insertScore(sum, currentScore);
 }
@@ -226,7 +293,9 @@ function addYatzy(number) {
   let sum = 0;
   let currentScore = Array.from(currentPlayer)[number];
 
-  for (let i = 0; i < diceArray.length; i++) {}
-
+  if (diceArray.map((x) => x.value).every((x) => x === dice1.value)) {
+    sum = 50;
+    console.log(sum);
+  }
   insertScore(sum, currentScore);
 }
