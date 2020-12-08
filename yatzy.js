@@ -4,8 +4,10 @@ class Dice {
     this.id = document.getElementById(id);
   }
   rollDice() {
-    this.id.src = "dice" + this.random() + ".png";
-    this.yatzy();
+    if (this.id.classList !== "locked") {
+      this.id.src = "dice" + this.random() + ".png";
+      this.yatzy();
+    }
   }
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
@@ -80,22 +82,18 @@ function rollAllDice() {
 }
 
 function calcSum() {
-  let input1 = document.getElementById("ones1");
-  let input2 = document.getElementById("twos1");
-  let input3 = document.getElementById("threes1");
-  let input4 = document.getElementById("fours1");
-  let input5 = document.getElementById("fives1");
-  let input6 = document.getElementById("sixes1");
+  let array = Array.from(document.querySelectorAll(".player1"));
+  let newArray = [];
 
-  let sum =
-    parseInt(input1.innerHTML) +
-    parseInt(input2.innerHTML) +
-    parseInt(input3.innerHTML) +
-    parseInt(input4.innerHTML) +
-    parseInt(input5.innerHTML) +
-    parseInt(input6.innerHTML);
-  console.log(sum);
+  for (let i = 1; i < 7; i++) {
+    const element = array[i];
+    newArray.push(Number(element.innerHTML));
+  }
+
+  let sum = newArray.reduce((total, curr) => total + curr);
+
   document.getElementById("sum1").innerHTML = sum;
+
   if (sum > 63) {
     document.getElementById("bonus1").innerHTML = 50;
   }
