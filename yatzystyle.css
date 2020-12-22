@@ -67,3 +67,7 @@ td {
 .activePlayer {
   border: 3px solid black;
 }
+
+.disabled {
+  opacity: 0.3;
+}
