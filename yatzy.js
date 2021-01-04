@@ -78,6 +78,8 @@ function nextPlayer() {
     .classList.add("activePlayer");
 }
 
+// Lägg till active player och no of rolls i storage
+
 function init() {
   nextPlayer();
 }
@@ -120,21 +122,72 @@ function calcSum() {
 
 init();
 
+let storageArray = [];
+
+function addToStorage(currentCell) {
+  let cellObject = {};
+  cellObject["id"] = currentCell.id;
+  cellObject["points"] = currentCell.innerHTML;
+  storageArray.push(cellObject);
+
+  localStorage.setItem("storageArray", JSON.stringify(storageArray));
+
+  console.log(localStorage.getItem("storageArray"));
+}
+
+function getFromStorage() {
+  console.log(`Amount of stored values: ${localStorage.length}`);
+
+  console.log(localStorage);
+}
+
+function resumePoints() {
+  let parsedArray = JSON.parse(localStorage.getItem("storageArray"));
+  if (parsedArray) {
+    storageArray = parsedArray;
+    console.log(storageArray);
+    for (let i = 0; i < parsedArray.length; i++) {
+      const element = parsedArray[i];
+      let cellToFill = document.getElementById(element.id);
+      cellToFill.innerHTML = element.points;
+      cellToFill.classList.add("disabled");
+      console.log(cellToFill);
+    }
+  }
+}
+
+function insertScore(points, currentCell) {
+  if (currentCell.innerHTML == "") {
+    if (points > 0) {
+      currentCell.innerHTML = points;
+      addToStorage(currentCell);
+      nextPlayer();
+    } else if (confirm("Are you sure you want to use the score 0?")) {
+      currentCell.innerHTML = points;
+      addToStorage(points, currentCell);
+      nextPlayer();
+    }
+  }
+  // else {
+  //   alert("You are not allowed to overwrite points");
+  // }
+}
+
 function addSingles(number) {
-  console.log(getElements()[0]);
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  for (let i = 0; i < diceArray.length; i++) {
+    if (diceArray[i].value == number) {
+      points += diceArray[i].value;
+    }
+  }
+  // console.log(points, currentCell);
+  insertScore(points, currentCell);
+  currentCell.classList.add("disabled");
 }
 
-addSingles();
-
-function toggleDisable() {
-  getElements()[5].classList.toggle("disabled");
-}
-
-dice1.value = 1;
-dice2.value = 2;
-dice3.value = 2;
-dice4.value = 2;
-dice5.value = 2;
+function addDisable() {}
 
 function addFullHouse() {
   let amount = diceArray
@@ -160,3 +213,11 @@ function onelineFullHouse() {
       }, {})
   ).every((x) => x === 2 || x === 3);
 }
+
+function resetStorage() {
+  console.log(localStorage);
+  localStorage.clear();
+  console.log(localStorage);
+}
+
+window.addEventListener("DOMContentLoaded", resumePoints);

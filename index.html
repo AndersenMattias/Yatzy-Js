@@ -21,159 +21,157 @@
         <thead>
           <tr>
             <th>Spelare/Players</th>
-            <td id="player1"></td>
-            <td id="player2"></td>
-            <td id="player3"></td>
-            <td id="player4"></td>
+            <td class="player1 row" id="player1"></td>
+            <td class="player2 row" id="player2"></td>
+            <td class="player3 row" id="player3"></td>
+            <td class="player4 row" id="player4"></td>
           </tr>
         </thead>
 
         <tbody>
           <tr>
             <td class="clickable" onclick="addSingles(1)">Ettor/Ones</td>
-            <td class="column player1" id="ones1">1</td>
-            <td id="ones2" class="player2"></td>
-            <td class="column player3" id="ones3"></td>
-            <td id="ones4" class="player4"></td>
+            <td class="player1 column" id="ones1"></td>
+            <td class="player2" id="ones2"></td>
+            <td class="player3 column" id="ones3"></td>
+            <td class="player4" id="ones4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(2)">Tvåor/Twos</td>
-            <td class="column player1" id="twos1">2</td>
-            <td id="twos2" class="player2"></td>
-            <td class="column player3" id="twos3"></td>
-            <td id="twos4" class="player4"></td>
+            <td class="player1 column" id="twos1"></td>
+            <td class="player2" id="twos2"></td>
+            <td class="player3 column" id="twos3"></td>
+            <td class="player4" id="twos4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(3)">Treor/Threes</td>
-            <td class="column player1" id="threes1">3</td>
-            <td id="threes2" class="player2"></td>
-            <td class="column player3" id="threes3"></td>
-            <td id="threes4" class="player4"></td>
+            <td class="player1 column" id="threes1"></td>
+            <td class="player2" id="threes2"></td>
+            <td class="player3 column" id="threes3"></td>
+            <td class="player4" id="threes4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(4)">Fyror/Fours</td>
-            <td class="column player1" id="fours1">4</td>
-            <td id="fours2" class="player2"></td>
-            <td class="column player3" id="fours3"></td>
-            <td id="fours4" class="player4"></td>
+            <td class="player1 column" id="fours1"></td>
+            <td class="player2" id="fours2"></td>
+            <td class="player3 column" id="fours3"></td>
+            <td class="player4" id="fours4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(5)">Femmor/Fives</td>
-            <td class="column player1" id="fives1">5</td>
-
-            <td id="fives2" class="player2"></td>
-            <td class="column player3" id="fives3"></td>
-            <td id="fives4" class="player4"></td>
+            <td class="player1 column" id="fives1"></td>
+            <td class="player2" id="fives2"></td>
+            <td class="player3 column" id="fives3"></td>
+            <td class="player4" id="fives4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(6)">Sexor/Sixes</td>
-            <td class="column player1" id="sixes1">6</td>
-
-            <td id="sixes2" class="player2"></td>
-            <td class="column player3" id="sixes3"></td>
-            <td id="sixes4" class="player4"></td>
+            <td class="player1 column" id="sixes1"></td>
+            <td class="player2" id="sixes2"></td>
+            <td class="player3 column" id="sixes3"></td>
+            <td class="player4" id="sixes4"></td>
           </tr>
 
           <tr>
             <th>Summa/Sum</th>
-            <td class="row" id="sum1"></td>
-            <td class="row" id="sum2"></td>
-            <td class="row" id="sum3"></td>
-            <td class="row" id="sum4"></td>
+            <td class="player1 row" id="sum1"></td>
+            <td class="player2 row" id="sum2"></td>
+            <td class="player3 row" id="sum3"></td>
+            <td class="player4 row" id="sum4"></td>
           </tr>
           <tr>
             <th>Bonus</th>
-            <td class="row" id="bonus1"></td>
-            <td class="row" id="bonus2"></td>
-            <td class="row" id="bonus3"></td>
-            <td class="row" id="bonus4"></td>
+            <td class="player1 row" id="bonus1"></td>
+            <td class="player2 row" id="bonus2"></td>
+            <td class="player3 row" id="bonus3"></td>
+            <td class="player4 row" id="bonus4"></td>
           </tr>
 
           <button onclick="nextPlayer()">Next Player</button>
           <button onclick="toggleDisable()">Toggle Disable</button>
+          <button onclick="resetStorage()">Reset Storage</button>
+          <button onclick="getFromStorage()">Log Storage</button>
 
-          <!-- 
           <tr>
             <td class="clickable" onclick="addPair(9)">Par/Pair</td>
-            <td class="column player1" id="pair1"></td>
+            <td class="player1 column" id="pair1"></td>
             <td class="player2" id="pair2"></td>
-            <td class="column player3" id="pair3"></td>
+            <td class="player3 column" id="pair3"></td>
             <td class="player4" id="pair4"></td>
           </tr>
 
           <tr>
             <td class="clickable" onclick="addPairs(10)">Två par/Two pairs</td>
-            <td class="column player1" id="pairs1"></td>
+            <td class="player1 column" id="pairs1"></td>
             <td class="player2" id="pairs2"></td>
-            <td class="column player3" id="pairs3"></td>
+            <td class="player3 column" id="pairs3"></td>
             <td class="player4" id="pairs4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addThreeOfAKind(11)">
               Tretal/Three of a kind
             </td>
-            <td class="column player1" id="threeOfAKind1"></td>
+            <td class="player1 column" id="threeOfAKind1"></td>
             <td class="player2" id="threeOfAKind2"></td>
-            <td class="column player3" id="threeOfAKind3"></td>
+            <td class="player3 column" id="threeOfAKind3"></td>
             <td class="player4" id="threeOfAKind4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addFourOfAKind(12)">
               Fyrtal/Four of a kind
             </td>
-            <td class="column player1" id="fourOfAKind1"></td>
+            <td class="player1 column" id="fourOfAKind1"></td>
             <td class="player2" id="fourOfAKind2"></td>
-            <td class="column player3" id="fourOfAKind3"></td>
+            <td class="player3 column" id="fourOfAKind3"></td>
             <td class="player4" id="fourOfAKind4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSmallStraight(13)">
               Liten stege/Small straight
             </td>
-            <td class="column player1" id="smallStraight1"></td>
+            <td class="player1 column" id="smallStraight1"></td>
             <td class="player2" id="smallStraight2"></td>
-            <td class="column player3" id="smallStraight3"></td>
+            <td class="player3 column" id="smallStraight3"></td>
             <td class="player4" id="smallStraight4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addLargeStraight(14)">
               Stor stege/Large straight
             </td>
-            <td class="column player1" id="largeStraight1"></td>
+            <td class="player1 column" id="largeStraight1"></td>
             <td class="player2" id="largeStraight2"></td>
-            <td class="column player3" id="largeStraight3"></td>
+            <td class="player3 column" id="largeStraight3"></td>
             <td class="player4" id="largeStraight4"></td>
-          </tr> -->
+          </tr>
           <tr>
             <td class="clickable" onclick="addFullHouse()">Kåk/Full house</td>
-            <td class="column player1" id="fullHouse1"></td>
+            <td class="player1 column" id="fullHouse1"></td>
             <td class="player2" id="fullHouse2"></td>
-            <td class="column player3" id="fullHouse3"></td>
+            <td class="player3 column" id="fullHouse3"></td>
             <td class="player4" id="fullHouse4"></td>
           </tr>
-          <!--
+
           <tr>
             <td class="clickable" onclick="addChance(16)">Chans/Chance</td>
-            <td class="column player1" id="chance1"></td>
+            <td class="player1 column" id="chance1"></td>
             <td class="player2" id="chance2"></td>
-            <td class="column player3" id="chance3"></td>
+            <td class="player3 column" id="chance3"></td>
             <td class="player4" id="chance4"></td>
           </tr>
           <tr>
             <td class="clickable" onclick="addYatzy(17)">Yatzy</td>
-            <td class="column player1" id="yatzy1"></td>
+            <td class="player1 column" id="yatzy1"></td>
             <td class="player2" id="yatzy2"></td>
-            <td class="column player3" id="yatzy3"></td>
+            <td class="player3 column" id="yatzy3"></td>
             <td class="player4" id="yatzy4"></td>
           </tr>
           <tr>
             <th>Totalt/Total</th>
-            <td class="row player1" id="total1"></td>
-            <td class="row player2" id="total2"></td>
-            <td class="row player3" id="total3"></td>
-            <td class="row player4" id="total4"></td>
+            <td class="player1 row" id="total1"></td>
+            <td class="player2 row" id="total2"></td>
+            <td class="player3 row" id="total3"></td>
+            <td class="player4 row" id="total4"></td>
           </tr>
-           -->
         </tbody>
       </table>
       <div class="diceDiv">
