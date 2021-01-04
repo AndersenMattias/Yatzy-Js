@@ -11,13 +11,20 @@
 
     <div class="scoresheet">
       <table>
+        <colgroup>
+          <col />
+          <col id="player1Col" />
+          <col id="player2Col" />
+          <col id="player3Col" />
+          <col id="player4Col" />
+        </colgroup>
         <thead>
           <tr>
             <th>Spelare/Players</th>
-            <td id="player1" class="player1"></td>
-            <td id="player2" class="player2"></td>
-            <td id="player3" class="player3"></td>
-            <td id="player4" class="player4"></td>
+            <td id="player1"></td>
+            <td id="player2"></td>
+            <td id="player3"></td>
+            <td id="player4"></td>
           </tr>
         </thead>
 
@@ -28,6 +35,9 @@
             <td id="ones2" class="player2"></td>
             <td class="column player3" id="ones3"></td>
             <td id="ones4" class="player4"></td>
+            <td id="ones2" class="player2">2</td>
+            <td class="column player3" id="ones3">3</td>
+            <td id="ones4" class="player4">5</td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(2)">Tvåor/Twos</td>
@@ -35,51 +45,82 @@
             <td id="twos2" class="player2"></td>
             <td class="column player3" id="twos3"></td>
             <td id="twos4" class="player4"></td>
+            <td id="twos2" class="player2">3</td>
+            <td class="column player3" id="twos3">4</td>
+            <td id="twos4" class="player4">6</td>
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(3)">Treor/Threes</td>
             <td class="column player1" id="threes1">3</td>
+<<<<<<< HEAD
             <td id="threes2" class="player2"></td>
             <td class="column player3" id="threes3"></td>
             <td id="threes4" class="player4"></td>
+=======
+            <td id="threes2" class="player2">4</td>
+            <td class="column player3" id="threes3">5</td>
+            <td id="threes4" class="player4">6</td>
+>>>>>>> b85d02d9d3eed1b88e72d57cba830ac7d1a8b1af
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(4)">Fyror/Fours</td>
             <td class="column player1" id="fours1">4</td>
+<<<<<<< HEAD
             <td id="fours2" class="player2"></td>
             <td class="column player3" id="fours3"></td>
             <td id="fours4" class="player4"></td>
+=======
+            <td id="fours2" class="player2">5</td>
+            <td class="column player3" id="fours3">6</td>
+            <td id="fours4" class="player4">7</td>
+>>>>>>> b85d02d9d3eed1b88e72d57cba830ac7d1a8b1af
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(5)">Femmor/Fives</td>
             <td class="column player1" id="fives1">5</td>
+<<<<<<< HEAD
             <td id="fives2" class="player2"></td>
             <td class="column player3" id="fives3"></td>
             <td id="fives4" class="player4"></td>
+=======
+            <td id="fives2" class="player2">6</td>
+            <td class="column player3" id="fives3">7</td>
+            <td id="fives4" class="player4">8</td>
+>>>>>>> b85d02d9d3eed1b88e72d57cba830ac7d1a8b1af
           </tr>
           <tr>
             <td class="clickable" onclick="addSingles(6)">Sexor/Sixes</td>
             <td class="column player1" id="sixes1">6</td>
+<<<<<<< HEAD
             <td id="sixes2" class="player2"></td>
             <td class="column player3" id="sixes3"></td>
             <td id="sixes4" class="player4"></td>
+=======
+            <td id="sixes2" class="player2">7</td>
+            <td class="column player3" id="sixes3">8</td>
+            <td id="sixes4" class="player4">9</td>
+>>>>>>> b85d02d9d3eed1b88e72d57cba830ac7d1a8b1af
           </tr>
 
           <tr>
             <th>Summa/Sum</th>
-            <td class="row player1" id="sum1"></td>
-            <td class="row player2" id="sum2"></td>
-            <td class="row player3" id="sum3"></td>
-            <td class="row player4" id="sum4"></td>
+            <td class="row" id="sum1"></td>
+            <td class="row" id="sum2"></td>
+            <td class="row" id="sum3"></td>
+            <td class="row" id="sum4"></td>
           </tr>
           <tr>
             <th>Bonus</th>
-            <td class="row player1" id="bonus1"></td>
-            <td class="row player2" id="bonus2"></td>
-            <td class="row player3" id="bonus3"></td>
-            <td class="row player4" id="bonus4"></td>
+            <td class="row" id="bonus1"></td>
+            <td class="row" id="bonus2"></td>
+            <td class="row" id="bonus3"></td>
+            <td class="row" id="bonus4"></td>
           </tr>
 
+          <button onclick="nextPlayer()">Next Player</button>
+          <button onclick="toggleDisable()">Toggle Disable</button>
+
+          <!-- 
           <tr>
             <td class="clickable" onclick="addPair(9)">Par/Pair</td>
             <td class="column player1" id="pair1"></td>
@@ -130,14 +171,15 @@
             <td class="player2" id="largeStraight2"></td>
             <td class="column player3" id="largeStraight3"></td>
             <td class="player4" id="largeStraight4"></td>
-          </tr>
+          </tr> -->
           <tr>
-            <td class="clickable" onclick="addFullHouse(15)">Kåk/Full house</td>
+            <td class="clickable" onclick="addFullHouse()">Kåk/Full house</td>
             <td class="column player1" id="fullHouse1"></td>
             <td class="player2" id="fullHouse2"></td>
             <td class="column player3" id="fullHouse3"></td>
             <td class="player4" id="fullHouse4"></td>
           </tr>
+          <!--
           <tr>
             <td class="clickable" onclick="addChance(16)">Chans/Chance</td>
             <td class="column player1" id="chance1"></td>
@@ -159,6 +201,7 @@
             <td class="row player3" id="total3"></td>
             <td class="row player4" id="total4"></td>
           </tr>
+           -->
         </tbody>
       </table>
       <div class="diceDiv">
@@ -168,9 +211,11 @@
         <img id="dice4" src="dice4.png" alt="" onclick="dice4.lockDice()" />
         <img id="dice5" src="dice5.png" alt="" onclick="dice5.lockDice()" />
       </div>
-      <button onclick="rollAllDice()">Roll the dice!</button>
+      <button id="rollAllDice" onclick="rollAllDice()">Roll the dice!</button>
       <button onclick="calcSum()">Get sum</button>
+      <p id="noOfRollsRemaining">3</p>
     </div>
+
     <script src="yatzy.js"></script>
   </body>
 </html>

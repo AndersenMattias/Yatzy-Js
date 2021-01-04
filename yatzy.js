@@ -4,11 +4,16 @@ class Dice {
     this.id = document.getElementById(id);
   }
   rollDice() {
-    this.id.src = "dice" + this.random() + ".png";
-    this.yatzy();
+    if (!this.id.classList.contains("locked")) {
+      this.id.src = "dice" + this.random() + ".png";
+      this.yatzy();
+    }
   }
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
+  }
+  lockDice() {
+    this.id.classList.toggle("locked");
   }
 
   yatzy() {
@@ -48,7 +53,30 @@ let dice5 = new Dice(5, "dice5");
 
 let diceArray = [dice1, dice2, dice3, dice4, dice5];
 
-function nextPlayer() {}
+let playerArray = [player1, player2, player3, player4];
+
+let activeNumber = 3;
+
+let activePlayer = playerArray[3];
+
+let rolls = document.getElementById("noOfRollsRemaining");
+
+function nextPlayer() {
+  document.getElementById("rollAllDice").disabled = false;
+  document
+    .getElementById("player" + (activeNumber + 1) + "Col")
+    .classList.remove("activePlayer");
+  activeNumber++;
+  if (activeNumber === playerArray.length) {
+    activeNumber = 0;
+  }
+  activePlayer = playerArray[activeNumber];
+  activePlayer.noOfRolls = 3;
+  rolls.innerHTML = activePlayer.noOfRolls;
+  document
+    .getElementById("player" + (activeNumber + 1) + "Col")
+    .classList.add("activePlayer");
+}
 
 function init() {
   nextPlayer();
@@ -60,23 +88,75 @@ function rollAllDice() {
   dice3.rollDice();
   dice4.rollDice();
   dice5.rollDice();
+  activePlayer.noOfRolls--;
+  rolls.innerHTML = activePlayer.noOfRolls;
+  if (activePlayer.noOfRolls === 0) {
+    document.getElementById("rollAllDice").disabled = true;
+    rolls.innerHTML = "You're out of rolls";
+  }
+}
+
+function getElements() {
+  let currentElements = Array.from(
+    document.querySelectorAll("td")
+  ).filter((x) => x.classList.contains("player" + (activeNumber + 1)));
+  return currentElements;
 }
 
 function calcSum() {
-  let array = Array.from(document.querySelectorAll(".player1"));
-  let newArray = [];
+  let sum = getElements()
+    .map((x) => Number(x.innerHTML))
+    .reduce((total, curr) => total + curr);
 
-  for (let i = 1; i < 7; i++) {
-    newArray.push(Number(array[i].innerHTML));
-  }
+  console.log(sum);
 
-  let sum = newArray.reduce((total, curr) => total + curr);
-
-  document.getElementById("sum1").innerHTML = sum;
+  document.getElementById("sum" + (activeNumber + 1)).innerHTML = sum;
 
   if (sum > 63) {
-    document.getElementById("bonus1").innerHTML = 50;
+    document.getElementById("bonus" + (activeNumber + 1)).innerHTML = 50;
   }
+  // nextPlayer();
 }
 
 init();
+
+function addSingles(number) {
+  console.log(getElements()[0]);
+}
+
+addSingles();
+
+function toggleDisable() {
+  getElements()[5].classList.toggle("disabled");
+}
+
+dice1.value = 1;
+dice2.value = 2;
+dice3.value = 2;
+dice4.value = 2;
+dice5.value = 2;
+
+function addFullHouse() {
+  let amount = diceArray
+    .map((x) => x.value)
+    .reduce((amount, current) => {
+      if (amount[current]) {
+        amount[current]++;
+      } else {
+        amount[current] = 1;
+      }
+      console.log(amount);
+      return amount;
+    }, {});
+  console.log(Object.values(amount).every((x) => x === 2 || x === 3));
+}
+
+function onelineFullHouse() {
+  return Object.values(
+    diceArray
+      .map((x) => x.value)
+      .reduce((amount, current) => {
+        amount[current] ? amount[current]++ : (amount[current] = 1);
+      }, {})
+  ).every((x) => x === 2 || x === 3);
+}
