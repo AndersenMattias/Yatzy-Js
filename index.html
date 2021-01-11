@@ -88,7 +88,6 @@
           </tr>
 
           <button onclick="nextPlayer()">Next Player</button>
-          <button onclick="toggleDisable()">Toggle Disable</button>
           <button onclick="resetStorage()">Reset Storage</button>
           <button onclick="getFromStorage()">Log Storage</button>
 
@@ -144,7 +143,7 @@
             <td class="player4" id="largeStraight4"></td>
           </tr>
           <tr>
-            <td class="clickable" onclick="addFullHouse()">Kåk/Full house</td>
+            <td class="clickable" onclick="addFullHouse(15)">Kåk/Full house</td>
             <td class="player1 column" id="fullHouse1"></td>
             <td class="player2" id="fullHouse2"></td>
             <td class="player3 column" id="fullHouse3"></td>
@@ -182,7 +181,6 @@
         <img id="dice5" src="dice5.png" alt="" onclick="dice5.lockDice()" />
       </div>
       <button id="rollAllDice" onclick="rollAllDice()">Roll the dice!</button>
-      <button onclick="calcSum()">Get sum</button>
       <p id="noOfRollsRemaining">3</p>
     </div>
 

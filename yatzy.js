@@ -8,6 +8,9 @@ class Dice {
       this.id.src = "dice" + this.random() + ".png";
       this.yatzy();
     }
+    if (this.id.classList.contains("hidden")) {
+      this.id.classList.remove("hidden");
+    }
   }
   random() {
     return (this.value = Math.floor(Math.random() * 6 + 1));
@@ -21,8 +24,7 @@ class Dice {
       dice1.value === dice2.value &&
       dice1.value === dice3.value &&
       dice1.value === dice4.value &&
-      dice1.value === dice5.value &&
-      dice1.value === dice6.value
+      dice1.value === dice5.value
     )
       alert("YATZY!");
   }
@@ -66,6 +68,10 @@ function nextPlayer() {
   document
     .getElementById("player" + (activeNumber + 1) + "Col")
     .classList.remove("activePlayer");
+
+  calcSum();
+  calcTotal();
+
   activeNumber++;
   if (activeNumber === playerArray.length) {
     activeNumber = 0;
@@ -76,6 +82,13 @@ function nextPlayer() {
   document
     .getElementById("player" + (activeNumber + 1) + "Col")
     .classList.add("activePlayer");
+
+  for (let i = 0; i < diceArray.length; i++) {
+    const element = diceArray[i];
+    element.id.classList.remove("locked");
+    element.id.classList.add("hidden");
+    element.value = 0;
+  }
 }
 
 // Lägg till active player och no of rolls i storage
@@ -106,18 +119,48 @@ function getElements() {
 }
 
 function calcSum() {
-  let sum = getElements()
-    .map((x) => Number(x.innerHTML))
-    .reduce((total, curr) => total + curr);
+  if (
+    getElements()
+      .splice(1, 6)
+      .every((x) => x.innerHTML !== "") &&
+    getElements().splice(7, 1)[0].innerHTML === ""
+  ) {
+    console.log("printing sum!");
+    let sum = getElements()
+      .splice(1, 6)
+      .map((x) => Number(x.innerHTML))
+      .reduce((total, curr) => total + curr);
 
-  console.log(sum);
+    let sumCell = document.getElementById("sum" + (activeNumber + 1));
+    sumCell.innerHTML = sum;
+    addToStorage(sumCell);
 
-  document.getElementById("sum" + (activeNumber + 1)).innerHTML = sum;
-
-  if (sum > 63) {
-    document.getElementById("bonus" + (activeNumber + 1)).innerHTML = 50;
+    if (sumCell.innerHTML > 63) {
+      let bonusCell = document.getElementById("bonus" + (activeNumber + 1));
+      bonusCell.innerHTML = 50;
+      addToStorage(bonusCell);
+    } else {
+      let bonusCell = document.getElementById("bonus" + (activeNumber + 1));
+      bonusCell.innerHTML = 0;
+      addToStorage(bonusCell);
+    }
   }
-  // nextPlayer();
+}
+
+function calcTotal() {
+  let arrayOfCells = getElements().splice(7, 11);
+  let currentCell = getElements()[18];
+  if (
+    arrayOfCells.every(
+      (x) => x.innerHTML !== "" && getElements()[18].innerHTML === ""
+    )
+  ) {
+    let points = arrayOfCells
+      .map((x) => Number(x.innerHTML))
+      .reduce((total, curr) => total + curr);
+    currentCell.innerHTML = points;
+    addToStorage(currentCell);
+  }
 }
 
 init();
@@ -131,8 +174,6 @@ function addToStorage(currentCell) {
   storageArray.push(cellObject);
 
   localStorage.setItem("storageArray", JSON.stringify(storageArray));
-
-  console.log(localStorage.getItem("storageArray"));
 }
 
 function getFromStorage() {
@@ -145,13 +186,12 @@ function resumePoints() {
   let parsedArray = JSON.parse(localStorage.getItem("storageArray"));
   if (parsedArray) {
     storageArray = parsedArray;
-    console.log(storageArray);
     for (let i = 0; i < parsedArray.length; i++) {
       const element = parsedArray[i];
       let cellToFill = document.getElementById(element.id);
+
       cellToFill.innerHTML = element.points;
       cellToFill.classList.add("disabled");
-      console.log(cellToFill);
     }
   }
 }
@@ -160,11 +200,13 @@ function insertScore(points, currentCell) {
   if (currentCell.innerHTML == "") {
     if (points > 0) {
       currentCell.innerHTML = points;
+      currentCell.classList.add("disabled");
       addToStorage(currentCell);
       nextPlayer();
     } else if (confirm("Are you sure you want to use the score 0?")) {
       currentCell.innerHTML = points;
-      addToStorage(points, currentCell);
+      currentCell.classList.add("disabled");
+      addToStorage(currentCell);
       nextPlayer();
     }
   }
@@ -184,12 +226,117 @@ function addSingles(number) {
   }
   // console.log(points, currentCell);
   insertScore(points, currentCell);
-  currentCell.classList.add("disabled");
 }
 
 function addDisable() {}
 
-function addFullHouse() {
+function addPair(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+  let duplicates = diceArray
+    .map((x) => x.value)
+    .reduce((acc, el, i, arr) => {
+      console.log(acc, el, i, arr.indexOf(el));
+
+      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el);
+      return acc;
+    }, [])
+    .sort()
+    .slice(-1)[0];
+  points = duplicates * 2;
+  insertScore(points, currentCell);
+}
+
+function addPairs(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  let duplicates = diceArray
+    .map((x) => x.value)
+    .reduce((acc, el, i, arr) => {
+      console.log(acc, el, i, arr.indexOf(el));
+
+      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el);
+      return acc;
+    }, [])
+    .sort()
+    .slice(-2);
+  if (duplicates.length === 2) {
+    points = duplicates.map((x) => x * 2).reduce((total, curr) => total + curr);
+  }
+
+  insertScore(points, currentCell);
+}
+
+function addThreeOfAKind(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  let triplets = diceArray.map((x) => x.value).sort();
+  for (let i = 4; i >= 0; i--) {
+    if (triplets[i + 1] == triplets[i] && triplets[i + 2] == triplets[i]) {
+      points = triplets[i] * 3;
+    }
+  }
+
+  insertScore(points, currentCell);
+}
+
+function addFourOfAKind(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  let quadruples = diceArray.map((x) => x.value).sort();
+  for (let i = 4; i >= 0; i--) {
+    if (
+      quadruples[i + 1] == quadruples[i] &&
+      quadruples[i + 2] == quadruples[i] &&
+      quadruples[i + 3] == quadruples[i]
+    ) {
+      points = quadruples[i] * 4;
+    }
+  }
+
+  insertScore(points, currentCell);
+}
+
+function addSmallStraight(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  let smallStraight = diceArray
+    .map((x) => x.value)
+    .filter((x) => x < 6)
+    .sort();
+  smallStraight = [...new Set(smallStraight)];
+  console.log(smallStraight);
+  if (smallStraight.length === 5) {
+    points = smallStraight.reduce((total, curr) => total + curr);
+  }
+
+  insertScore(points, currentCell);
+}
+
+function addLargeStraight(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  let largeStraight = diceArray
+    .map((x) => x.value)
+    .filter((x) => x > 1)
+    .sort();
+  largeStraight = [...new Set(largeStraight)];
+  console.log(largeStraight);
+  if (largeStraight.length === 5) {
+    points = largeStraight.reduce((total, curr) => total + curr);
+  }
+
+  insertScore(points, currentCell);
+}
+
+function addFullHouse(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
   let amount = diceArray
     .map((x) => x.value)
     .reduce((amount, current) => {
@@ -201,17 +348,37 @@ function addFullHouse() {
       console.log(amount);
       return amount;
     }, {});
-  console.log(Object.values(amount).every((x) => x === 2 || x === 3));
+
+  if (Object.values(amount).every((x) => x === 2 || x === 3)) {
+    let firstKey = Number(Object.keys(amount)[0]);
+    let secondKey = Number(Object.keys(amount)[1]);
+    let firstValue = Number(Object.values(amount)[0]);
+    let secondValue = Number(Object.values(amount)[1]);
+
+    points = firstValue * firstKey + secondValue * secondKey;
+    console.log(points);
+  }
+  insertScore(points, currentCell);
 }
 
-function onelineFullHouse() {
-  return Object.values(
-    diceArray
-      .map((x) => x.value)
-      .reduce((amount, current) => {
-        amount[current] ? amount[current]++ : (amount[current] = 1);
-      }, {})
-  ).every((x) => x === 2 || x === 3);
+function addChance(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  points = diceArray.map((x) => x.value).reduce((total, curr) => total + curr);
+
+  insertScore(points, currentCell);
+}
+
+function addYatzy(number) {
+  let points = 0;
+  let currentCell = getElements()[number];
+
+  if (diceArray.map((x) => x.value).every((x) => x === dice1.value)) {
+    points = 50;
+    console.log(points);
+  }
+  insertScore(points, currentCell);
 }
 
 function resetStorage() {
